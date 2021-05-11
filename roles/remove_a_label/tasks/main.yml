@@ -1,0 +1,19 @@
+---
+# tasks file for Test
+- name: Remove the label
+  k8s:
+    state: present
+    definition:
+      apiVersion: v1alpha1
+      kind: Test
+      metadata:
+        name: "{{ ansible_operator_meta.name }}"
+        namespace: "{{ ansible_operator_meta.namespace }}"
+        labels:
+          my-label: null
+          other-label: ~
+  register: after_no_label
+
+- name: What did we get?
+  debug:
+    msg: "{{ after_no_label }}"

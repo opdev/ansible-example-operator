@@ -1,0 +1,11 @@
+---
+- hosts: localhost
+  gather_facts: no
+  collections:
+    - community.kubernetes
+    - operator_sdk.util
+  tasks:
+    - import_role:
+        name: "../roles/add_a_label"
+    - import_role:
+        name: "../roles/remove_a_label"
